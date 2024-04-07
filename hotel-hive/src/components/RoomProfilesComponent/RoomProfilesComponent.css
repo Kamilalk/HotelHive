@@ -1,0 +1,41 @@
+.room-profile-card {
+  background-color: rgba(217, 105, 220, 0.47);
+  box-shadow: 0px 3px 7px grey;
+  border: none;
+  height: inherit;
+}
+
+.room-profile-card .room,
+.floor {
+  margin: 0px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.room-profile-card .details {
+  margin: 12px 0px 0px 0px;
+}
+.room-profile-card .details .room-info .cleaning-status,
+.check-in-date,
+.check-out-date,
+.occupation-status {
+  margin: 0px;
+  font-size: 14px;
+  color: black;
+}
+.room-profile-card .details {
+  margin: 12px 0px 0px 0px;
+}
+
+.room-profile-card .details .bed-status {
+  margin: 0px;
+  font-size: 14px;
+  color: black;
+}
+
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 768px) {
+}
+@media only screen and (max-width: 425px) {
+}

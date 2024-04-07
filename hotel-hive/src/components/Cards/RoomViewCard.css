@@ -1,0 +1,18 @@
+.room-view-card {
+  box-shadow: 0px 3px 7px grey;
+  border: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  .room-view-card .title,
+  .status,
+  .type,
+  .bed-type {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 768px) {
+}
+@media only screen and (max-width: 425px) {
+  /*Small smartphones [325px -> 425px]*/
+}

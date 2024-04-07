@@ -1,0 +1,117 @@
+.tasks-page .task-select {
+  width: 200px;
+  padding: 3px;
+  border: 1px solid #d969dc;
+  border-radius: 25px;
+  outline: none;
+}
+
+.tasks-page .task-select:focus {
+  border-color: #d969dc;
+}
+
+.tasks-page .task-container .task-title {
+  margin: 0px;
+  font-weight: 700;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+  color: #d969dc;
+  font-size: 20px;
+}
+.tasks-page .task-container .tasks-container-scrollable {
+  height: 500px;
+  overflow-y: auto;
+}
+
+.tasks-page .task-card {
+  background-color: #f5e2f5;
+  border: 1px solid #d969dc;
+  border-radius: 25px;
+  padding: 18px;
+  margin: 12px 8px 12px 0px;
+}
+
+.tasks-page .task-card .task-name {
+  color: #d969dc;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tasks-page .task-card .task-card-div1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tasks-page .task-card .task-card-div1 .task-name,
+.task-due-date {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2px 25px 2px 25px;
+}
+.tasks-page .task-card .task-description {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2px 25px 2px 25px;
+}
+.tasks-page .task-card .task-created-date {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+.tasks-page .task-card .task-created-date span {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2px 25px 2px 25px;
+}
+.tasks-page .task-card .task-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.tasks-page .task-card .task-buttons-container .task-done,
+.task-edit {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2px 50px 2px 50px;
+  color: #d969dc;
+}
+
+/* Form */
+.tasks-page .task-form {
+  background-color: #f5e2f5;
+  border: 1px solid #d969dc;
+  border-radius: 14px;
+  padding: 0px 30px 15px 30px;
+}
+.tasks-page .task-form .task-title {
+  color: #d969dc;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+  font-size: 20px;
+  font-weight: 600;
+}
+.tasks-page .task-form .task-form-container .task-input-label {
+  color: #d969dc;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+  margin-top: 12px;
+}
+.tasks-page .task-form .task-form-container .task-input-field {
+  padding: 18px 0px 0px 3px;
+  border: 2px solid #d969dc;
+  margin-top: 8px;
+}
+
+.tasks-page .task-form .task-form-container .task-form-btn {
+  margin-top: 12px;
+  background-color: rgba(217, 105, 220, 0.47);
+  width: 100%;
+  padding: 6px 0px 6px 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  .tasks-page .taks-form {
+    margin: 15px 0px 15px 0px;
+  }
+}

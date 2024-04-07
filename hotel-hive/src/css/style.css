@@ -1,0 +1,56 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+.navbar .navbar-nav {
+    width: 100%;
+    justify-content: space-between;
+}
+  
+.navbar .nav-link {
+    padding: 0.5rem 1rem;
+}
+  
+.bg-pink {
+    background-color: pink;
+}
+
+
+.white-text {
+    color: white !important;
+}
+
+
+.nav-visible {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: top 0.5s;
+    z-index: 1000; /* Ensure Navbar is above other content */
+}
+
+.nav-hidden {
+    position: fixed;
+    top: -100px; /* Adjust as needed to completely hide the Navbar */
+    left: 0;
+    width: 100%;
+    transition: top 0.5s;
+    z-index: 1000; /* Ensure Navbar is above other content */
+}
+
+.inf-content{
+    border:1px solid #DDDDDD;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+  

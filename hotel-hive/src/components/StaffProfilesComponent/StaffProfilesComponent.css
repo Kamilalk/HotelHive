@@ -1,0 +1,53 @@
+.staff-profile-card {
+  background-color: rgba(217, 105, 220, 0.47);
+  box-shadow: 0px 3px 7px grey;
+  border: none;
+  height: inherit;
+}
+
+.staff-profile-card .user-info .name {
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.staff-profile-card .user-info .occupation {
+  margin: 0px;
+  font-size: 14px;
+}
+
+.staff-profile-card .details {
+  margin: 12px 0px 0px 0px;
+}
+.staff-profile-card .details .room-info .cleaning-status,
+.check-in-date,
+.check-out-date,
+.occupation-status {
+  margin: 0px;
+  font-size: 14px;
+  color: black;
+}
+.staff-profile-card .details {
+  margin: 12px 0px 0px 0px;
+}
+
+.staff-profile-card .details .bed-status {
+  margin: 0px;
+  font-size: 14px;
+  color: black;
+}
+
+.staff-profile-card .user-details {
+  margin: 12px 0px 0px 0px;
+}
+.staff-profile-card .user-details .email,
+.phone {
+  margin: 0px;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 768px) {
+}
+@media only screen and (max-width: 425px) {
+}

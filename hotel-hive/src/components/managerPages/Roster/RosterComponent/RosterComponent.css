@@ -1,0 +1,50 @@
+.roster-card{
+  background-color: rgba(217, 105, 220, 0.47);
+  box-shadow: 0px 3px 7px grey;
+  border: none;
+  height: inherit;
+}
+
+.roster-card .name {
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 700;
+  color: black
+}
+.roster-card .user-info  {
+  margin: 0px;
+  font-size: 14px;
+}
+
+.roster-card.details {
+  margin: 12px 0px 0px 0px;
+}
+.roster-card.details {
+  margin: 0px;
+  font-size: 14px;
+  color: black;
+}
+.roster-card.details {
+  margin: 12px 0px 0px 0px;
+}
+
+.roster-card.details  {
+  margin: 0px;
+  font-size: 14px;
+  color: black;
+}
+
+.roster-card.user-details {
+  margin: 12px 0px 0px 0px;
+}
+.roster-card.user-details .time {
+  margin: 0px;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 768px) {
+}
+@media only screen and (max-width: 425px) {
+}

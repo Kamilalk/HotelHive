@@ -1,0 +1,56 @@
+.chat-card {
+    background-color: rgba(217, 105, 220, 0.47);
+    box-shadow: 0px 3px 7px grey;
+    border: none;
+    height: inherit;
+    text-align: center;
+  }
+  
+  .chat-card  .chat-name {
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .chatcard  {
+    margin: 0px;
+    font-size: 14px;
+  }
+  
+  .chat-card  {
+    margin: 12px 0px 0px 0px;
+  }
+  .chat-card  {
+    margin: 0px;
+    font-size: 14px;
+    color: black;
+  }
+  .chat-card  {
+    margin: 12px 0px 0px 0px;
+  }
+  
+  .chat-card {
+    margin: 0px;
+    font-size: 14px;
+    color: black;
+  }
+  
+  .chat-card  {
+    margin: 12px 0px 0px 0px;
+  }
+  .chat-card  {
+    margin: 0px;
+    font-size: 14px;
+  }
+  .chat-name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold; /* Make the font bold */
+  }
+  
+  @media only screen and (max-width: 1200px) {
+  }
+  @media only screen and (max-width: 768px) {
+  }
+  @media only screen and (max-width: 425px) {
+  }
+  

@@ -1,0 +1,60 @@
+.room-lists-input {
+    background-color: #f5e2f5;
+    border: 1px solid #d969dc;
+    border-radius: 14px;
+    padding: 0px 30px 15px 30px;
+    /* Center the form horizontally */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Set the distance from the top */
+    top: 100px; 
+    
+  }
+     .room-lists-input .room-lists-title {
+    color: #d969dc;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+    font-weight: 600;
+  }
+    .room-lists-input .input-container .input-label {
+    color: #d969dc;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+    margin-top: 12px;
+  }
+    .room-lists-input .form-container .input-field {
+    padding: 18px 0px 0px 3px;
+    border: 2px solid #d969dc;
+    margin-top: 8px;
+  }
+  
+    .room-lists-input .input-container .form-btn {
+    margin-top: 12px;
+    background-color: rgba(217, 105, 220, 0.47);
+    width: 100%;
+    padding: 6px 0px 6px 0px;
+  }
+
+  .room-lists-input .room-checkboxes {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+  }
+  
+  .room-lists-input .room-checkbox {
+    flex: 0 0 50%; /* Each checkbox takes up 50% of the container width */
+  }
+  .delete-button {
+    margin-left: 8px;
+    color: #d969dc; /* Adjust the margin as needed */
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .room-lists-input {
+        /* Adjust styles for smaller screens */
+        top: 20%;
+        transform: translate(-50%, -50%);
+        margin: 15px 0;
+        width: 90%; /* Adjust width as needed */
+        top: 20%;
+      }
+  }

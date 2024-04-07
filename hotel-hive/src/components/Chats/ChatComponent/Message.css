@@ -1,0 +1,67 @@
+.msgmessage {
+    position: relative; /* Ensure proper positioning of the name */
+    margin: 0.5rem 0; /* Margin */
+    flex-direction: column;
+    align-items: flex-start; /* Align messages to the start of the container */
+    margin-bottom: 10px;
+
+}
+
+.msgname {
+    color: #d969dc;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.msgsent {
+    background-color: rgba(217, 105, 220, 0.47);
+    float: right;
+    border-radius: 1rem;
+    padding: 0.75rem 1.25rem;
+}
+
+.msgreceived {
+    background-color: #f5e2f5;
+    color: black;
+    float: left;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.img {
+
+    margin: 0.5rem;
+    max-width: 200px; /* Limit the width to 200px */
+    max-height: 200px; /* Limit the height to 200px */
+    width: auto; /* Maintain aspect ratio for horizontal images */
+    height: auto;
+}
+
+
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 768px) {
+    .msgname {
+        font-size: 9px;
+        padding: 0.25rem;
+    }
+
+    .msgmessage {
+        margin: 0.3rem 0; /* Reduce margin between messages */
+    }
+
+
+    .msgsent, .received {
+        font-size: 10px;
+        padding: 0.09rem;
+        border-radius: 0.5rem;
+    }
+
+    .img {
+        max-width: 150px; /* Adjust maximum width for small screens */
+        max-height: 150px; /* Adjust maximum height for small screens */
+        width: auto; /* Maintain aspect ratio for horizontal images */
+        height: auto; /* Maintain aspect ratio for vertical images */
+    }
+
+}

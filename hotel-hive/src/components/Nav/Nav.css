@@ -1,0 +1,22 @@
+.nav-bar .title {
+  font-size: 40px;
+  font-weight: semi-bold;
+  color: #ffffff;
+}
+
+.nav-bar .profile-pic{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-bar .logo {
+    width: 70px;
+    height: 50px;
+  }
+
+  .nav-bar .title {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,36 @@
+.form {
+    height: 3.5rem; /* Equivalent to h-14 */
+    width: 100%; /* Equivalent to w-full */
+    display: flex;
+    font-size: 1.25rem; /* Equivalent to text-xl */
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .input {
+    width: 100%; /* Equivalent to w-full */
+    font-size: 1.25rem; /* Equivalent to text-xl */
+    padding: 0.75rem; /* Equivalent to p-3 */
+    background-color: #ffffff; /* Equivalent to bg-white-900 */
+    color: #000000; /* Equivalent to text-black */
+    outline: none;
+    border: 2px solid rgba(217, 105, 220, 0.47); /* Add pink border */
+    border-radius: 0.5rem;  /* Equivalent to border-none */
+  }
+
+
+.button {
+    width: 20%; /* Equivalent to w-[20%] */
+    background-color: rgba(217, 105, 220, 0.47);
+    border-radius: 0.5rem; 
+}
+
+@media only screen and (max-width: 768px) {
+    .form {
+      height: 2.5rem; /* Adjusted height for smaller screens */
+    }
+  
+    .input {
+      padding: 0.5rem; /* Adjusted padding for smaller screens */
+    }
+  }
