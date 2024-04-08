@@ -42,6 +42,11 @@
     padding: 2px 25px 2px 25px;
   }
 
+  .room-list-profile-details p {
+    display: block;
+    width: 100%;
+}
+
     .input-label {
     color: #d969dc;
     text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);

@@ -64,12 +64,12 @@ if (!roomList) {
           <p>{roomList.listName}</p>
         </div>
         <label htmlFor="floorNumber" className="block input-label">List Tasks: </label>
-      <div className="room-list-profile-details">
-        {/* Display each task in the list */}
-        {roomList.listTasks.map((task, index) => (
-          <p key={index}>{task}</p>
-        ))}
-      </div>
+        <div className="room-list-profile-details" style={{ marginBottom: '10px' }}>
+          {/* Display each task in the list */}
+          {roomList.listTasks.map((task, index) => (
+            <p key={index}>{task}</p>
+          ))}
+        </div>
       <label htmlFor="bedNumber" className="block input-label">Rooms Attached: </label>
       <div className="room-list-profile-details">
             <div className="room-numbers-row">

@@ -5,7 +5,7 @@
     padding: 0px 30px 15px 30px;
     /* Center the form vertically and horizontally */
     position: absolute;
-    top: 60%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -51,6 +51,16 @@
     background-color: rgba(217, 105, 220, 0.47);
     width: 100%;
     padding: 6px 0px 6px 0px;
+  }
+
+  .task-list {
+    background-color: #f5e2f5;
+    border: 1px solid #d969dc;
+    border-radius: 14px;
+    padding: 0px 30px 15px 30px;
+    /* Center the form vertically and horizontally */
+  
+    
   }
   
   @media only screen and (max-width: 768px) {

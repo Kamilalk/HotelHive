@@ -112,7 +112,7 @@ const EditRoomList = () => {
       });
   
       // Redirect to the appropriate page after successful update
-      history.push('/path/to/redirect');
+      history.push('/managerPages/RoomLists');
   
     } catch (error) {
       console.error('Error updating room list:', error);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useStaffProfile } from '../../../contexts/StaffProfileContext';
-import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { useHistory, useParams} from "react-router-dom";
 import { database } from '../../../firebase'
 import './RoomAssignmentView.css';
@@ -15,12 +15,14 @@ const RoomAssignmentView= () => {
   console.log('hotelid:', hotelid);
   const [roomProfile, setRoomProfile] = useState(null);
   const history = useHistory();
+  const [taskList, setTaskList] = useState([]); 
 // Define roomInfo state
 
 useEffect(() => {
   const fetchRoomProfile = async () => {
     if (roomNo && hotelid) {
       const roomDocRef = doc(database, 'Hotels', hotelid, 'Rooms', roomNo);
+      const roomListRef = collection(database, 'Hotels', hotelid, 'Rooms', roomNo, 'roomlist');
 
       try {
         const roomDocSnap = await getDoc(roomDocRef);
@@ -31,6 +33,13 @@ useEffect(() => {
         } else {
           console.log('Room profile not found');
         }
+
+        // Fetch data from roomlist subcollection
+        const roomListSnapshot = await getDocs(roomListRef);
+        const tasks = roomListSnapshot.docs.map(doc => doc.data());
+        console.log('taskList:', tasks); // Log task list data
+        setTaskList(tasks);
+
       } catch (error) {
         console.error('Error fetching room profile:', error);
         // Handle error state here if needed
@@ -53,6 +62,7 @@ if (!roomProfile) {
 
   return (
     <>
+    <div>
     <div className='col-lg-6 col-md-6 col-sm-12 RoomAssignmentView-form'>
       <div className="title-container">
         <p className="RoomAssignmentView-title">Room Details</p>
@@ -97,12 +107,25 @@ if (!roomProfile) {
         <div className="room-details">
           <p>{roomProfile.additionalNotes}</p>
         </div>
+        <label for="additionalNotes" class="block input-label"> Task List: </label>
+        <div className="room-details">
+            <ul>
+              {taskList[0].listTasks.map((task, index) => (
+                <li key={index}>
+                  {task.task} - {task.completed ? 'Done' : 'Not Done'}
+                </li>
+              ))}
+            </ul>
+        </div>
         <div className="text-center mt-4">
           <button className="form-btn" onClick={handleEditClick}>
             Edit Room
           </button>
         </div>
     </div>
+
+</div>
+
     </>
   );
 };

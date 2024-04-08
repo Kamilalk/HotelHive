@@ -3,7 +3,7 @@ import { useStaffProfile } from '../../../../contexts/StaffProfileContext';
 import { useHistory } from 'react-router-dom';
 import './CreateRoomLists.css'
 import { database } from '../../../../firebase';
-import { collection, getDocs, setDoc, doc, getDoc, deleteDoc } from "firebase/firestore"
+import { collection, getDocs, setDoc, doc, getDoc, deleteDoc, query, where } from "firebase/firestore"
 
 
 
@@ -62,31 +62,57 @@ function CreateRoomLists() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const newListId = generateUniqueId(); 
+          const existingRooms = await Promise.all(selectedRooms.map(async roomId => {
+            const roomListsRef = collection(database, `Hotels/${hotelid}/RoomLists`);
+            const roomListQuery = query(roomListsRef, where('roomNumbers', 'array-contains', roomId));
+            const roomListSnapshot = await getDocs(roomListQuery);
+            return roomListSnapshot.docs.map(doc => doc.id);
+        }));
 
+        // Flatten the array of existing room lists
+        const existingRoomLists = existingRooms.flat();
+
+        // If any room is assigned to other lists, remove it from those lists
+        await Promise.all(existingRoomLists.map(async listId => {
+            const listRef = doc(collection(database, `Hotels/${hotelid}/RoomLists`), listId);
+            const listDoc = await getDoc(listRef);
+            if (listDoc.exists()) {
+                const { roomNumbers } = listDoc.data();
+                const updatedRoomNumbers = roomNumbers.filter(roomId => !selectedRooms.includes(roomId));
+                await setDoc(listRef, { roomNumbers: updatedRoomNumbers }, { merge: true });
+            }
+        }));
+
+        // Add the new room list document
+        const newListId = generateUniqueId();
         const roomListsRef = collection(database, `Hotels/${hotelid}/RoomLists`);
         await setDoc(doc(roomListsRef, newListId), {
-          listName: listName,
-          listTasks: listTasks,
-          roomNumbers: selectedRooms
+            listName: listName,
+            listTasks: listTasks,
+            roomNumbers: selectedRooms
         });
-        
     
         await Promise.all(selectedRooms.map(async roomId => {
           const roomListRef = collection(database, `Hotels/${hotelid}/Rooms/${roomId}/roomlist`);
           
-          // Delete any existing document for the current room list
-          const existingDoc = await getDoc(doc(roomListRef, newListId));
-          if (existingDoc.exists()) {
-            await deleteDoc(doc(roomListRef, newListId));
-          }
+          // Fetch all documents within the collection
+          const roomListSnapshot = await getDocs(roomListRef);
+          
+          // Iterate over each document and delete it
+          roomListSnapshot.forEach(async doc => {
+              console.log('Deleting document:', doc.id); // Log the ID of the document being deleted
+              await deleteDoc(doc.ref);
+              console.log('Document deleted successfully.'); // Log successful deletion
+          });
         
           // Add the new document
+          console.log('Adding new document...');
           await setDoc(doc(roomListRef, newListId), {
-            listName: listName,
-            listTasks: listTasks.map(task => ({ task: task, completed: false })) // Initialize completed field as false for each task
+              listName: listName,
+              listTasks: listTasks.map(task => ({ task: task, completed: false })) // Initialize completed field as false for each task
           });
-        }));
+          console.log('New document added successfully.'); // Log successful addition
+      }));
       
       // Reset state variables after successful submission
         setListName('');
