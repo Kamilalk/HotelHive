@@ -72,10 +72,7 @@ export default function Dashboard() {
     }
   };
 
-  const handleDelete = (title) => {
-    // Implement delete logic here
-    console.log(`Notification "${title}" deleted`);
-  }
+
   
 
   return (
@@ -93,6 +90,7 @@ export default function Dashboard() {
                   .map((notification) => (
                     <NotificationComponent
                       key={notification.id}
+                      id={notification.id}
                       type={notification.type}
                       title={notification.title}
                       message={notification.message}
@@ -100,7 +98,7 @@ export default function Dashboard() {
                       time={notification.time}
                       date={notification.date}
                       info={notification.info}
-                      onDelete={() => handleDelete(notification.title)}
+                      
                     />
                   ))}
               </div>

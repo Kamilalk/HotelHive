@@ -37,6 +37,7 @@ import CreateRoomLists from './managerPages/RoomProfiles/RoomLists/CreateRoomLis
 import RoomListProfile from './managerPages/RoomProfiles/RoomLists/RoomListProfile';
 import EditRoomList from './managerPages/RoomProfiles/RoomLists/EditRoomList';
 import RoomAssignmentView from './managerPages/RoomAssignments/RoomAssignmentView';
+import EditRoomAssignments from './managerPages/RoomAssignments/EditRoomAssignments';
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
               <PrivateRoute path="/roomlist/:id" exact component={ RoomListProfile} />
               <PrivateRoute path="/editroomlistprofile/:id" exact component={ EditRoomList} />
               <PrivateRoute path="/roomtaskView/:roomNo" exact component={ RoomAssignmentView } />
+              <PrivateRoute path="/managerPages/EditRoomAssignments" exact component={ EditRoomAssignments } /> 
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
               <Route path="/forgot-password" component={ForgotPassword} />

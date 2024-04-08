@@ -4,7 +4,9 @@ import { allocateRoomsToStaff } from "./RoomAlocALg/room-allocation"
 import RoomAssignmentComponent from "../../RoomAssignmentComponent/RoomAssignmentComponent";
 import { useStaffProfile } from "../../../contexts/StaffProfileContext";
 import { database } from '../../../firebase';
+import { Link } from "react-router-dom";
 import { collection, query, where, getDocs, addDoc, getDoc, deleteDoc, setDoc, doc } from 'firebase/firestore';
+import './RoomAssignments.css'
 
 
 function RoomAssignment() {
@@ -120,7 +122,23 @@ function RoomAssignment() {
 
   return (
     <div>
-      <button onClick={handleButtonClick}>Fetch Data Again</button>
+        <div className="d-flex align-items-center justify-content-between">
+          <p className="m-0 RoomAssignments-title">Room Assignments</p>
+          <div className="d-flex">
+            <button
+              className="rounded text-black d-flex align-items-center justify-content-between RoomAssignments-button ml-1"
+            >
+              <Link to="/managerPages/EditRoomAssignments"> Edit Assignments</Link>
+            </button>
+
+            <button onClick={handleButtonClick}
+              className="rounded text-black d-flex align-items-center justify-content-between RoomAssignments-button ml-1"
+            >
+              Generate Room Assignments
+            </button>
+
+          </div>
+        </div>
       <RoomAssignmentComponent housekeeperAssignments={housekeeperAssignments} />
     </div>
   );

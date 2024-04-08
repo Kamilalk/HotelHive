@@ -343,7 +343,7 @@ const MyTasks = () => {
           <form onSubmit={addTask}>
             <p className="d-flex align-items-center justify-content-center mt-3 task-title">Create A <br /> Task</p>
             <div className="task-form-container">
-              <label for="taskname" class="block input-label">Task Name:</label>
+              <label for="taskname" class="block task-input-label">Task Name:</label>
               <input
                 type="text"
                 name="taskname"
@@ -353,7 +353,7 @@ const MyTasks = () => {
                 class="block w-full input-field"
                 required
               />
-              <label for="taskdescription" class="block input-label">Task Description:</label>
+              <label for="taskdescription" class="block task-input-label">Task Description:</label>
               <textarea
                 type="textarea"
                 name="taskdescription"
@@ -364,7 +364,7 @@ const MyTasks = () => {
                 required
               ></textarea>
 
-              <label for="taskassignto" class="block input-label">Assign Task To:</label>
+              <label for="taskassignto" class="block task-input-label">Assign Task To:</label>
               <select
                 value={taskAssignee}
                 onChange={e => setTaskAssignee(e.target.value)}
@@ -377,7 +377,7 @@ const MyTasks = () => {
                 ))}
               </select>
 
-              <label for="taskdueby" class="block input-label">Task Due By:</label>
+              <label for="taskdueby" class="block task-input-label">Task Due By:</label>
               <input
                 type="datetime-local"
                 name="taskdueby"
