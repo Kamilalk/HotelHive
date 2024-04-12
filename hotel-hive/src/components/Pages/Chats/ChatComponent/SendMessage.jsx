@@ -22,15 +22,15 @@ const SendMessage = ({ scroll, id }) => {
     const fetchChatUsers = async () => {
       try {
         const chatDocRef = doc(database, `Hotels/${hotelId}/Chats/${chatId}`);
-        console.log("Chat Doc Ref:", chatDocRef); // Log the chat document reference
+        console.log("Chat Doc Ref:", chatDocRef); 
         const chatDocSnapshot = await getDoc(chatDocRef);
-        console.log("Chat Doc Snapshot:", chatDocSnapshot); // Log the chat document snapshot
+        console.log("Chat Doc Snapshot:", chatDocSnapshot); 
         if (chatDocSnapshot.exists()) {
           const cData = chatDocSnapshot.data();
           console.log("Chat Data:", cData);
-          setChatData(cData) // Log the chat data
+          setChatData(cData) 
           const users = cData.chatUsers || [];
-          console.log("Chat Users:", users); // Log the chat users
+          console.log("Chat Users:", users); 
           setChatUsers(users);
         }
       } catch (error) {
@@ -49,13 +49,13 @@ const SendMessage = ({ scroll, id }) => {
       title: `New Message ${chatData.chatName ? 'in: ' + chatData.chatName : 'from: ' + displayName}`,
       type: 'message',
       message: `New message from: ${displayName}`,
-      description: messageText, // Set the message text as the description
+      description: messageText, 
       time: new Date().toLocaleTimeString(),
       date: new Date().toLocaleDateString(),
       info: { chatid: chatId}
     };
     try {
-      // Loop through chat users and set notification for each user except the sender
+      //loop through chat users and set notification for each user except the sender
       chatUsers.forEach(async (user) => {
         if (user !== uid) {
           const userDocRef = doc(database, 'UserProfiles', user);
@@ -97,7 +97,7 @@ const SendMessage = ({ scroll, id }) => {
           const imageRef = ref(storageRef, imageId);
           try {
             await uploadBytes(imageRef, image);
-            messageData.imageid = imageId; // Include imageUrl only if an image is uploaded
+            messageData.imageid = imageId; 
             console.log('Image uploaded successfully');
           } catch (error) {
             console.error('Error uploading image:', error);

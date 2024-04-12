@@ -160,7 +160,7 @@ const MyTasks = () => {
         const updatedTask = updatedTaskSnapshot.data();
       
         // Update the corresponding notification
-        const notificationDocRef = doc(database, 'UserProfiles', currentAssigneeId, 'notifications', id); // Use taskAssigneeid instead of updatedFields.assignee
+        const notificationDocRef = doc(database, 'UserProfiles', currentAssigneeId, 'notifications', id); 
         const notificationSnapshot = await getDoc(notificationDocRef);
         console.log("Updated Notification:", notificationSnapshot);
         if (notificationSnapshot.exists()) {

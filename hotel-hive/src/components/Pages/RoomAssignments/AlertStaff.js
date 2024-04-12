@@ -11,7 +11,7 @@ import { ref, uploadBytes} from 'firebase/storage';
 function AlertStaff(){
     const { roomNo, assigneeid } = useParams();
     const [userProfiles, setUserProfiles] = useState([]);
-    const today = new Date("2024-03-06");
+    const today = Date.now();
     const WeekStartDate = startOfWeek(today);
     const formatedDate = format(today, 'yyyy-MM-dd');
     const formatedWeekStartDate = format(WeekStartDate, 'yyyy-MM-dd');

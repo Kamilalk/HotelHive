@@ -53,7 +53,7 @@ export const StaffProfileProvider = ({ children }) => {
 
     const profileRegister = async (staffProfile, hotelName) => {
         try {
-              //add a new document to the 'hotels' collection
+            //add a new document to the 'hotels' collection
             const hotelDocRef = await addDoc(collection(database, "Hotels"), {
               name: hotelName
             });
@@ -62,7 +62,7 @@ export const StaffProfileProvider = ({ children }) => {
             //add a user profile to the 'userProfiles' subcollection under this hotel
             const userProfileRef = doc(collection(database, "UserProfiles"), staffProfile.uid);
             await setDoc(userProfileRef, {
-              hotelId: hotelDocRef.id, //added hotel ID to the user profile
+              hotelId: hotelDocRef.id, 
               fullName: staffProfile.fullName,
               email: staffProfile.email,
               role: staffProfile.role

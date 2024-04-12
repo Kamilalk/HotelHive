@@ -7,7 +7,7 @@ import { startOfWeek , format} from "date-fns";
 export function useRoomData() {
   const { staffProfile } = useStaffProfile();
   const hotelId = staffProfile.hotelId;
-  const today = new Date("2024-03-06");
+  const today = Date.now();
   const WeekStartDate = startOfWeek(today);
   const formatedDate = format(today, 'yyyy-MM-dd');
   const formatedWeekStartDate = format(WeekStartDate, 'yyyy-MM-dd');

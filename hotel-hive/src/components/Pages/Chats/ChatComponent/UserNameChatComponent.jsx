@@ -16,25 +16,22 @@ const UserNameChatComponent = ({id, name}) => {
 
     const handleChatClick = async () => {
       try {
-        // Reference to the chats collection for the current hotel
+    
         const chatsRef = collection(database, "Hotels", hotelId, "Chats");
-  
-        // Query to find a chat that contains only the current user and the selected user
         const userChatQuery = query(
           chatsRef,
           where("chatUsers", "==", [userId, id])
         );
   
-        // Execute the query
         const querySnapshot = await getDocs(userChatQuery);
   
-        // If a chat between the two users exists, navigate to that chat
+        //If a chat between the two users exists navigate to that chat
         if (!querySnapshot.empty) {
           querySnapshot.forEach((doc) => {
             history.push(`/chats/${doc.id}`);
           });
         } else {
-          // If no existing chat, create a new chat between the two users
+          //If no existing chat create a new chat between the two users
           const newChatRef = await addDoc(chatsRef, {
 
             createdAt: new Date(),

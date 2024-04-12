@@ -125,14 +125,7 @@ function EditRoomAssignments() {
         setRoomsForSelectedUserRemove(roomNumbers); // Update the state for "Remove Room"
     }
     
-    function handleRoomNumberChange(event, index) {
-        const roomNumber = event.target.value;
-    
-        // Update the selected room numbers
-        const newSelectedRoomNumbers = [...selectedRoomNumbers];
-        newSelectedRoomNumbers[index] = roomNumber;
-        setSelectedRoomNumbers(newSelectedRoomNumbers);
-    }
+
 
     function handleRoomNumberChangeDelete(event) {
         setSelectedRoomNumberRemove(event.target.value);
@@ -147,14 +140,14 @@ function EditRoomAssignments() {
               
             querySnapshot.forEach(async (doc) => {
                 const data = doc.data();
-                console.log('Data:', data); // Add this line
+                console.log('Data:', data); 
     
                 const assignedRooms = data.assignedRooms || [];
-                console.log('Assigned rooms:', assignedRooms); // Add this line
+                console.log('Assigned rooms:', assignedRooms); 
                   
                 if (data.name === selectedUserNameRemove) {
                     const updatedAssignedRooms = assignedRooms.filter(room => room.roomNumber !== selectedRoomNumberRemove);
-                    console.log('Updated assigned rooms:', updatedAssignedRooms); // Add this line
+                    console.log('Updated assigned rooms:', updatedAssignedRooms); 
                 
                     await updateDoc(doc.ref, { assignedRooms: updatedAssignedRooms });
                     setSuccessMessage(`Room ${selectedRoomNumberRemove} removed from ${selectedUserNameRemove}'s assignments.`);
@@ -332,7 +325,7 @@ function handleUserToTransferChange(event) {
                     // Add the transferred room to the target user's rooms
                     const updatedUserToRooms = [...userToRooms, roomToTransfer];
     
-                    // Update the Firestore documents with the new room assignments
+                  
                     await updateDoc(userFromDoc.ref, { assignedRooms: updatedUserFromRooms });
                     await updateDoc(userToDoc.ref, { assignedRooms: updatedUserToRooms });
                     setSuccessMessage(`Room ${selectedRoomToTransfer} transferred from ${selectedUserToTransfer} to ${selectedUserTo}.`);

@@ -33,10 +33,14 @@ const RoomAssignmentProfile= () => {
   const name = staffProfile.fullName;
   const currentUserID = auth.currentUser.uid;
   const [assignee, setAssignee] = useState(null);
-  const [isRoomStarted, setIsRoomStarted] = usePersistentState('isRoomStarted', false);
-  const [isWaitingForInspection, setIsWaitingForInspection] = usePersistentState('isWaitingForInspection', false);
-  const [isRoomCompleted, setIsRoomCompleted] = usePersistentState('isRoomCompleted', false);
-  const [isPausedbySupervisor, setIsPausedbySupervisor] = usePersistentState('isPausedbySupervisor', false);
+  const isRoomStartedKey = `isRoomStarted_${roomNo}`;
+  const isWaitingForInspectionKey = `isWaitingForInspection_${roomNo}`;
+  const isRoomCompletedKey = `isRoomCompleted_${roomNo}`;
+  const isPausedbySupervisorKey = `isPausedbySupervisor_${roomNo}`;
+  const [isRoomStarted, setIsRoomStarted] = usePersistentState(isRoomStartedKey, false);
+  const [isWaitingForInspection, setIsWaitingForInspection] = usePersistentState(isWaitingForInspectionKey, false);
+  const [isRoomCompleted, setIsRoomCompleted] = usePersistentState(isRoomCompletedKey, false);
+  const [isPausedbySupervisor, setIsPausedbySupervisor] = usePersistentState(isPausedbySupervisorKey, false);
 
 
 
@@ -252,7 +256,7 @@ const sendNotification = async (msgTitle, msgMsg, msgDesc) => {
         setIsRoomStarted(false);
         setIsWaitingForInspection(true);
         setIsRoomCompleted(true);
-        deleteRoomFromAssignments(roomNo);
+
       }
     } catch (error) {
       console.error('Error handling room submission:', error);
@@ -274,7 +278,7 @@ const sendNotification = async (msgTitle, msgMsg, msgDesc) => {
 
   const handlePauseCheck = async () => {
     setIsRoomStarted(false);
-    setIsWaitingForInspection(false);
+    setIsWaitingForInspection(true);
     setIsPausedbySupervisor(true);
     await updateRoomStatus('Check To Be Continued')
     await refreshRoomProfile();
@@ -330,12 +334,18 @@ const sendNotification = async (msgTitle, msgMsg, msgDesc) => {
       setIsRoomStarted(false);
       setIsWaitingForInspection(false);
       setIsRoomCompleted(true);
+      deleteRoomFromAssignments(roomNo);
     }
 
   }
+  useEffect(() => {
+    console.log('isRoomStarted:', isRoomStarted);
+    console.log('isWaitingForInspection:', isWaitingForInspection);
+    console.log('isRoomCompleted:', isRoomCompleted);
+    console.log('isPausedbySupervisor:', isPausedbySupervisor);
+  }, [isRoomStarted, isWaitingForInspection, isRoomCompleted, isPausedbySupervisor]);
 
-
-
+// isWaitingForInspection && 
 
   if (!roomProfile) {
     return <div>Loading...</div>;
@@ -407,14 +417,15 @@ const sendNotification = async (msgTitle, msgMsg, msgDesc) => {
           </div>
         ))}
       </div>
-      {role === 'Housekeeper' && !isRoomStarted && !isWaitingForInspection && !isRoomCompleted && !isPausedbySupervisor && !isRoomCompleted && <button className="rounded form-btn" onClick={handleStartRoom}>Start Room</button>}
-      {role === 'Housekeeper' && isRoomStarted && !isWaitingForInspection && !isRoomCompleted && !isPausedbySupervisor && <button className="rounded form-btn" onClick={handlePauseRoom}>Pause Room</button>}
-      {role === 'Housekeeper'  && isRoomStarted && !isWaitingForInspection && !isRoomCompleted && !isPausedbySupervisor && <button className="rounded form-btn" onClick={handleSubmitRoom}>Submit Room</button>}
-      {role === 'Housekeeper' && isRoomStarted && !isWaitingForInspection && !isRoomCompleted &&  !isPausedbySupervisor && <button className="rounded form-btn" onClick={handleHelpRequest}>Ask for help </button>}
-      {role === 'Supervisor' && !isRoomStarted && !isWaitingForInspection && !isRoomCompleted && !isRoomCompleted && <button className="rounded form-btn" onClick={handleRoomCheck}>Start Room Check</button>}
-      {role === 'Supervisor' && isRoomStarted && isWaitingForInspection && !isRoomCompleted && <button className="rounded form-btn" onClick={handlePauseCheck}>Pause Room Check </button>}
-      {role === 'Supervisor' && isRoomStarted && isWaitingForInspection && !isRoomCompleted && <button className="rounded form-btn" onClick={handleCompleteCheck}>Check Complete</button>}
-      {role === 'Supervisor' && isRoomStarted && isWaitingForInspection &&!isRoomCompleted && <button className="rounded form-btn" onClick={handleHelpRequest}>Send Request</button>}
+      {role === 'Housekeeper' && !isRoomStarted && !isWaitingForInspection && !isPausedbySupervisor &&  <button className="rounded form-btn" onClick={handleStartRoom}>Start Room</button>}
+      {role === 'Housekeeper' && isRoomStarted && !isWaitingForInspection &&   !isPausedbySupervisor && <button className="rounded form-btn" onClick={handlePauseRoom}>Pause Room</button>}
+      {role === 'Housekeeper'  && isRoomStarted && !isWaitingForInspection &&  !isPausedbySupervisor && <button className="rounded form-btn" onClick={handleSubmitRoom}>Submit Room</button>}
+      {role === 'Housekeeper' && isRoomStarted && !isWaitingForInspection &&   !isPausedbySupervisor && <button className="rounded form-btn" onClick={handleHelpRequest}>Ask for help </button>}
+      {role === 'Supervisor' && !isRoomStarted &&   <button className="rounded form-btn" onClick={handleRoomCheck}>Start Room Check</button>}
+      {role === 'Supervisor' && isRoomStarted &&  isWaitingForInspection &&  <button className="rounded form-btn" onClick={handlePauseCheck}>Pause Room Check </button>}
+      {role === 'Supervisor' && isRoomStarted && isWaitingForInspection &&  <button className="rounded form-btn" onClick={handleCompleteCheck}>Check Complete</button>}
+      {role === 'Supervisor' && isRoomStarted && isWaitingForInspection && <button className="rounded form-btn" onClick={handleHelpRequest}>Send Request</button>}
+      
         </div>
       
         <div className="text-center mt-4">

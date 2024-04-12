@@ -224,34 +224,34 @@ const Roster = () => {
 
 
       <div id="week-schedule">
-  {weekDates.map((date, index) => (
-    <div key={index} className="schedule-day">
-      <div>
-        <h1 className="week-day">{dayNames[index]}</h1>
-        <p className="week-date">{date}</p>
+        {weekDates.map((date, index) => (
+          <div key={index} className="schedule-day">
+            <div>
+              <h1 className="week-day">{dayNames[index]}</h1>
+              <p className="week-date">{date}</p>
+            </div>
+            <div>
+              {shifts[date] && shifts[date].length > 0 ? (
+                shifts[date].map((shift, idx) => (
+                  <RosterComponent 
+                    key={`${date}-${idx}`}
+                    docid={shift.id} 
+                    date={date}
+                    id={shift.userid}
+                    role={shift.role}
+                    name={shift.name}
+                    startTime={shift.startTime}
+                    finishTime={shift.endTime}
+                  />
+                ))
+              ) : (
+                <p>No shifts scheduled</p>
+              )}
+            </div>
+          </div>
+        ))}
+        <button onClick={() => history.goBack()} className="rounded form-btn">Back</button>
       </div>
-      <div>
-        {shifts[date] && shifts[date].length > 0 ? (
-          shifts[date].map((shift, idx) => (
-            <RosterComponent 
-              key={`${date}-${idx}`}
-              docid={shift.id} 
-              date={date}
-              id={shift.userid}
-              role={shift.role}
-              name={shift.name}
-              startTime={shift.startTime}
-              finishTime={shift.endTime}
-            />
-          ))
-        ) : (
-          <p>No shifts scheduled</p>
-        )}
-      </div>
-    </div>
-  ))}
-  <button onClick={() => history.goBack()} className="rounded form-btn">Back</button>
-</div>
 
     </div>
   );

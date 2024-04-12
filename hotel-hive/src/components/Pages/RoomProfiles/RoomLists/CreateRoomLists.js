@@ -68,10 +68,10 @@ function CreateRoomLists() {
             return roomListSnapshot.docs.map(doc => doc.id);
         }));
 
-        // Flatten the array of existing room lists
+        //flatten the array of existing room lists
         const existingRoomLists = existingRooms.flat();
 
-        // If any room is assigned to other lists, remove it from those lists
+        //if any room is assigned to other lists, remove it from those lists
         await Promise.all(existingRoomLists.map(async listId => {
             const listRef = doc(collection(database, `Hotels/${hotelid}/RoomLists`), listId);
             const listDoc = await getDoc(listRef);
@@ -82,7 +82,6 @@ function CreateRoomLists() {
             }
         }));
 
-        // Add the new room list document
         const newListId = generateUniqueId();
         const roomListsRef = collection(database, `Hotels/${hotelid}/RoomLists`);
         await setDoc(doc(roomListsRef, newListId), {
@@ -93,24 +92,23 @@ function CreateRoomLists() {
     
         await Promise.all(selectedRooms.map(async roomId => {
           const roomListRef = collection(database, `Hotels/${hotelid}/Rooms/${roomId}/roomlist`);
-          
-          // Fetch all documents within the collection
+         
           const roomListSnapshot = await getDocs(roomListRef);
           
-          // Iterate over each document and delete it
+          //iterate over each document and delete it
           roomListSnapshot.forEach(async doc => {
-              console.log('Deleting document:', doc.id); // Log the ID of the document being deleted
+              console.log('Deleting document:', doc.id); 
               await deleteDoc(doc.ref);
-              console.log('Document deleted successfully.'); // Log successful deletion
+              console.log('Document deleted successfully.'); 
           });
         
-          // Add the new document
+          //add the new document
           console.log('Adding new document...');
           await setDoc(doc(roomListRef, newListId), {
               listName: listName,
-              listTasks: listTasks.map(task => ({ id: generateUniqueId(), task: task, completed: false }))// Initialize completed field as false for each task
+              listTasks: listTasks.map(task => ({ id: generateUniqueId(), task: task, completed: false }))
           });
-          console.log('New document added successfully.'); // Log successful addition
+          console.log('New document added successfully.'); 
       }));
       
       // Reset state variables after successful submission
@@ -142,7 +140,7 @@ function CreateRoomLists() {
   return (
     <div className='col-lg-6 col-md-6 col-sm-12 room-lists-input'>
         <form onSubmit={handleSubmit}>
-            <p className='d-flex align-items-center justify-content-between room-lists-title'>CreateRoomList</p>
+            <p className='d-flex align-items-center justify-content-between room-lists-title'>Create Room List</p>
             <div className='input-container'>
                 <label htmlFor="listName" className="block input-label">List Name:</label>
                 <input
@@ -178,7 +176,7 @@ function CreateRoomLists() {
                     />
                 <button type="button" className="form-btn" onClick={addTaskToList}>Add Task</button>
                 
-                <label htmlFor="selectedRooms" className="block input-label">Select Rooms htmlFor list:</label>
+                <label htmlFor="selectedRooms" className="block input-label">Select Rooms :</label>
                 <div className='input-container room-checkboxes'>
                 {loading ? (
                     <p>Loading rooms...</p>

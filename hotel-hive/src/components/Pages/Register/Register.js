@@ -27,14 +27,15 @@ export default function Register() {
         }
 
         try{
-            setError('')
-            setLoading(true)
-            const uid = await register(emailRef.current.value, passwordRef.current.value)
+            setError('');
+            setLoading(true);
+            const uid = await register(emailRef.current.value, passwordRef.current.value);
 
-            const staffProfile = new StaffProfile(uid, fullNameRef.current.value, emailRef.current.value);
+            const staffProfile = new StaffProfile(uid, fullNameRef.current.value, emailRef.current.value, "Manager");
 
             const hotelName = hotelNameRef.current.value
-        
+
+
             await profileRegister(staffProfile, hotelName)
 
             history.push('/')

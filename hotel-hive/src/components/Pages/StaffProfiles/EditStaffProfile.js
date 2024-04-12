@@ -20,10 +20,6 @@ function EditStaffProfile() {
     phone: ''
   });
 
-  const [passwords, setPasswords] = useState({
-    newPassword: '',
-    confirmPassword: ''
-  });
 
 
   useEffect(() => {
@@ -57,29 +53,12 @@ function EditStaffProfile() {
 
     try {
 
-      const user = auth.currentUser;
-
-
-      if (auth.currentUser.uid !== userId && (staffDetails.email !== '' || passwords.newPassword !== '')) {
-        console.error('You are not authorized to modify this account.');
-   
-        return;
-      }
   
       const db = getFirestore();
       const staffDocRef = doc(db, 'UserProfiles', userId);
       
       await updateDoc(staffDocRef, staffDetails);
 
-      if (staffDetails.email !== '') {
-        await user.updateEmail(staffDetails.email);
-        console.log('Email updated successfully');
-      }
-  
-      if (passwords.newPassword !== '' && passwords.newPassword === passwords.confirmPassword) {
-        await user.updatePassword(passwords.newPassword);
-        console.log('Password updated successfully');
-      }
   
 
       console.log('Staff details updated successfully!');
@@ -106,16 +85,9 @@ function EditStaffProfile() {
   };
 
 
-
-
-const handlePasswordChange = (e) => {
-  setPasswords({ ...passwords, [e.target.name]: e.target.value });
-};
-
   const {
     fullName,
     role,
-    email,
     phone
   } = staffDetails;
 
@@ -145,15 +117,7 @@ const handlePasswordChange = (e) => {
                 required
                 />
                 <label htmlFor="email" className="block input-label">Email:</label>
-                <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={e => setStaffDetails({ ...staffDetails, email: e.target.value })}
-                id="email"
-                className="block w-full input-field"
-                required
-                />
+                <span id="email" className="block w-full input-field">{staffDetails.email}</span>
                 <label htmlFor="phone" className="block input-label">Phone:</label>
                 <input
                 type="tel"
@@ -162,28 +126,9 @@ const handlePasswordChange = (e) => {
                 onChange={e => setStaffDetails({ ...staffDetails, phone: e.target.value })}
                 id="phone"
                 className="block w-full input-field"
-                required
+               
                 />
-                <label htmlFor="newPassword" className="block input-label">New Password:</label>
-                <input
-                type="password"
-                name="newPassword"
-                value={passwords.newPassword}
-                onChange={handlePasswordChange}
-                id="newPassword"
-                className="block w-full input-field"
-                required
-                />
-                <label htmlFor="confirmPassword" className="block input-label">Confirm New Password:</label>
-                <input
-                type="password"
-                name="confirmPassword"
-                value={passwords.confirmPassword}
-                onChange={handlePasswordChange}
-                id="confirmPassword"
-                className="block w-full input-field"
-                required
-                />
+ 
                 <button type="submit" className="rounded form-btn">Edit Staff</button>
                 <button onClick={handleDelete} className="rounded form-btn">Delete Staff</button>
                 <button onClick={() => history.goBack()} className=" rounded form-btn">Back</button>

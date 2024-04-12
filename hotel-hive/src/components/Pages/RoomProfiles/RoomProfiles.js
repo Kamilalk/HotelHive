@@ -55,7 +55,7 @@ const RoomProfiles = () => {
             <button
               className="rounded text-black d-flex align-items-center justify-content-between page-button ml-1"
             >
-              <Link to="/managerPages/CSVUpload">Add Several Profiles</Link>
+              <Link to="/managerPages/CSVUpload">Add and Update Profiles</Link>
             </button>
             </div>
             )}
