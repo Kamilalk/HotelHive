@@ -1,0 +1,44 @@
+.MyProfile-form {
+  background-color: #f5e2f5;
+  border: 1px solid #d969dc;
+  border-radius: 14px;
+  padding: 0px 30px 15px 30px;
+  /* Center the form vertically and horizontally */
+  text-align: center;
+  margin: auto; /* Center horizontally */
+  margin-top: 50px; /* Adjust top margin as needed */
+  width: 50%; /* Set initial width */
+}
+
+.MyProfile-form .MyProfile-title {
+  color: #d969dc;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.MyProfile-details {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2px 25px 2px 25px;
+}
+
+.input-label {
+  color: #d969dc;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.form-btn {
+  margin-top: 12px;
+  background-color: rgba(217, 105, 220, 0.47);
+  width: 100%;
+  padding: 6px 0px 6px 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  .MyProfile-form {
+    /* Adjust styles for smaller screens */
+    margin-top: 50px; /* Adjust top margin as needed */
+    width: 90%; /* Adjust width as needed */
+  }
+}

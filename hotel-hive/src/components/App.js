@@ -1,43 +1,44 @@
-import Register from './Register/Register'
+import Register from './Pages/Register/Register'
 import React from "react"
-import { Container } from 'react-bootstrap'
 import { AuthProvider } from '../contexts/AuthContexts'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Dashboard from './managerPages/Dashboard/Dashboard'
-import Login from './Login/Login'
+import Dashboard from './Pages/Dashboard/Dashboard'
+import Login from './Pages/Login/Login'
 import PrivateRoute from './PrivateRoute';
-import ForgotPassword from './ForgotPassword';
-import MyProfile from './MyProfile';
 import { StaffProfileProvider } from '../contexts/StaffProfileContext';
-import MyTasks from './managerPages/MyTasks/MyTasks'
-import RoomAssignments from './managerPages/RoomAssignments/RoomAssignments'
-import RoomProfiles from './managerPages/RoomProfiles/RoomProfiles'
-import Roster from './managerPages/Roster/Roster' 
-import StaffProfiles from './managerPages/StaffProfiles/StaffProfiles'
-import TrainingMode from './managerPages/TrainingMode/TrainingMode'
-import AddStaff from './managerPages/StaffProfiles/AddStaff';
-import AddRooms from './managerPages/RoomProfiles/AddRooms';
-import CSVUpload from './managerPages/RoomProfiles/CsvUpload';
+import MyTasks from './Pages/Tasks/MyTasks'
+import RoomAssignments from './Pages/RoomAssignments/RoomAssignments'
+import RoomProfiles from './Pages/RoomProfiles/RoomProfiles'
+import Roster from './Pages/Roster/Roster' 
+import StaffProfiles from './Pages/StaffProfiles/StaffProfiles'
+import TrainingMode from './Pages/Training/TrainingMode'
+import AddStaff from './Pages/StaffProfiles/AddStaff';
+import AddRooms from './Pages/RoomProfiles/AddRooms';
+import CSVUpload from './Pages/RoomProfiles/CsvUpload';
 import Nav from './Nav/Nav';
-import RoomProfilePage from './managerPages/RoomProfiles/RoomProfilePage';
-import EditRoomProfile from './managerPages/RoomProfiles/EditRoomProfile';
-import UpdateRoomAssignments from './managerPages/UpdateRoomAssignments/UpdateRoomAssignments';
-import StaffProfilePage from './managerPages/StaffProfiles/StaffProfilePage';
-import EditStaffProfile from './managerPages/StaffProfiles/EditStaffProfile';
-import CreateChat from './Chats/CreateChat';
-import ChatProfiles from './Chats/ChatProfiles';
-import Chat from './Chats/Chat';
-import EditRoster from './managerPages/Roster/RosterEdit';
-import CreateTraining from './managerPages/TrainingMode/CreateTraining';
-import TrainingProfile from './managerPages/TrainingMode/TrainingProfile';
-import EditTrainingProfile from './managerPages/TrainingMode/EditTrainingProfile';
-import EditChat from './Chats/EditChat';
-import RoomLists from './managerPages/RoomProfiles/RoomLists/RoomLists';
-import CreateRoomLists from './managerPages/RoomProfiles/RoomLists/CreateRoomLists';
-import RoomListProfile from './managerPages/RoomProfiles/RoomLists/RoomListProfile';
-import EditRoomList from './managerPages/RoomProfiles/RoomLists/EditRoomList';
-import RoomAssignmentView from './managerPages/RoomAssignments/RoomAssignmentView';
-import EditRoomAssignments from './managerPages/RoomAssignments/EditRoomAssignments';
+import RoomProfilePage from './Pages/RoomProfiles/RoomProfilePage';
+import EditRoomProfile from './Pages/RoomProfiles/EditRoomProfile';
+import StaffProfilePage from './Pages/StaffProfiles/StaffProfilePage';
+import EditStaffProfile from './Pages/StaffProfiles/EditStaffProfile';
+import CreateChat from './Pages/Chats/CreateChat';
+import ChatProfiles from './Pages/Chats/ChatProfiles';
+import Chat from './Pages/Chats/Chat';
+import EditRoster from './Pages/Roster/RosterEdit';
+import CreateTraining from './Pages/Training/CreateTraining';
+import TrainingProfile from './Pages/Training/TrainingProfile';
+import EditTrainingProfile from './Pages/Training/EditTrainingProfile';
+import EditChat from './Pages/Chats/EditChat';
+import RoomLists from './Pages/RoomProfiles/RoomLists/RoomLists';
+import CreateRoomLists from './Pages/RoomProfiles/RoomLists/CreateRoomLists';
+import RoomListProfile from './Pages/RoomProfiles/RoomLists/RoomListProfile';
+import EditRoomList from './Pages/RoomProfiles/RoomLists/EditRoomList';
+import RoomAssignmentProfile from './Pages/RoomAssignments/RoomAssignmentProfile';
+import EditRoomAssignments from './Pages/RoomAssignments/EditRoomAssignments';
+import MyProfilePage from './Pages/MyProfile/MyProfilePage';
+import EditMyProfile from './Pages/MyProfile/EditMyProfile';
+import AddChat from './Pages/Chats/addChat';
+import MyTasksStaff from './Pages/Tasks/MyTasksStaff';
+import AlertStaff from './Pages/RoomAssignments/AlertStaff';
 
 function App() {
   return (
@@ -49,16 +50,13 @@ function App() {
           <StaffProfileProvider>
           <Nav fixed="top" style={{ position: 'fixed', top: 0 }} />
             <Switch>
-            
               <PrivateRoute exact path="/" component={Dashboard} />
-              <PrivateRoute exact path="/MyProfile" component={MyProfile} />
-              <PrivateRoute exact path="/managerPages/MyTasks" component={MyTasks} />
-              <PrivateRoute exact path="/managerPages/RoomAssignments" component={RoomAssignments} />
-              {/* <PrivateRoute exact path="/managerPages/RoomAssignments/Update" component={UpdateRoomAssignments} /> */}
-              <PrivateRoute exact path="/managerPages/RoomProfiles" component={RoomProfiles} />
-              <PrivateRoute exact path="/managerPages/Roster" component={Roster} />
-              <PrivateRoute exact path="/managerPages/StaffProfiles" component={StaffProfiles} />
-              <PrivateRoute exact path="/managerPages/TrainingMode" component={TrainingMode} />
+              <PrivateRoute exact path="/MyTasks" component={MyTasks} />
+              <PrivateRoute exact path="/RoomAssignments" component={RoomAssignments} />
+              <PrivateRoute exact path="/RoomProfiles" component={RoomProfiles} />
+              <PrivateRoute exact path="/Roster" component={Roster} />
+              <PrivateRoute exact path="/StaffProfiles" component={StaffProfiles} />
+              <PrivateRoute exact path="/TrainingMode" component={TrainingMode} />
               <PrivateRoute exact path="/managerPages/AddStaff" component={AddStaff} />
               <PrivateRoute exact path="/managerPages/AddRooms" component={AddRooms} />
               <PrivateRoute exact path="/managerPages/CSVUpload" component={CSVUpload} />
@@ -78,11 +76,15 @@ function App() {
               <PrivateRoute path="/roomlists/createroomlist" exact component={CreateRoomLists} />
               <PrivateRoute path="/roomlist/:id" exact component={ RoomListProfile} />
               <PrivateRoute path="/editroomlistprofile/:id" exact component={ EditRoomList} />
-              <PrivateRoute path="/roomtaskView/:roomNo" exact component={ RoomAssignmentView } />
+              <PrivateRoute path="/roomtaskView/:roomNo" exact component={ RoomAssignmentProfile } />
               <PrivateRoute path="/managerPages/EditRoomAssignments" exact component={ EditRoomAssignments } /> 
+              <PrivateRoute path="/myprofile/:userId" exact component={ MyProfilePage } />
+              <PrivateRoute path="/editmyprofile/:userId" exact component={ EditMyProfile } />
+              <PrivateRoute path="/addchat" exact component={ AddChat } />
+              <PrivateRoute path="/mytasksstaff" exact component={ MyTasksStaff } />
+              <PrivateRoute path="/alertstaff/:roomNo/:assigneeid" exact component={ AlertStaff } />
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
-              <Route path="/forgot-password" component={ForgotPassword} />
             </Switch>
           </StaffProfileProvider>
         </AuthProvider>

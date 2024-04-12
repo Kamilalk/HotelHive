@@ -1,0 +1,34 @@
+.chat-profiles .chat-title {
+    color: #d969dc;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  
+  .chat-profiles .page-button {
+    background-color: rgba(217, 105, 220, 0.47);
+    padding: 6px 14px 6px 14px;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    /*Tablets [601px -> 1200px]*/
+  }
+  @media only screen and (max-width: 768px) {
+    .chat-profiles .chat-title {
+      color: #d969dc;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  
+    .chat-profiles .page-button {
+      background-color: rgba(217, 105, 220, 0.47);
+      padding: 4px 8px 4px 8px;
+      font-size: 12px;
+      text-decoration: none;
+    }
+  }
+  @media only screen and (max-width: 425px) {
+    /*Small smartphones [325px -> 425px]*/
+  }
+  

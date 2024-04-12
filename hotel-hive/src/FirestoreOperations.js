@@ -54,23 +54,45 @@ export async function AddUserProfile(profile, hId) {
 export async function AddRoom(newRoom, hotelId) {
     try {
         const roomCollectionRef = collection(database, `Hotels/${hotelId}/Rooms`);
-        const roomDocRef = doc(roomCollectionRef, newRoom.roomNumber); // Manually set document ID with room number
-        await setDoc(roomDocRef, {
-            roomNumber: newRoom.roomNumber,
-            hotelId: newRoom.hotelId,
-            floor: newRoom.floor,
-            beds: newRoom.beds,
-            roomType: newRoom.roomType,
-            occupationStatus: newRoom.occupationStatus,
-            cleaningStatus: newRoom.cleaningStatus,
-            additionalNotes: newRoom.additionalNotes,
-            reservationFrom : newRoom.reservationFrom,
-            reservationTo: newRoom.reservationTo,
-            currentRes: newRoom.currentRes 
-        }); 
-        console.log("Room added to hotel with ID:", hotelId);
+        const roomDocRef = doc(roomCollectionRef, newRoom.roomNumber);
+        
+        // Check if the room already exists
+        const roomDocSnapshot = await getDoc(roomDocRef);
+        if (roomDocSnapshot.exists()) {
+            // Room exists, update individual fields
+            const existingRoomData = roomDocSnapshot.data();
+            await setDoc(roomDocRef, {
+                ...existingRoomData, // Maintain existing data
+                floor: newRoom.floor,
+                beds: newRoom.beds,
+                roomType: newRoom.roomType,
+                occupationStatus: newRoom.occupationStatus,
+                cleaningStatus: newRoom.cleaningStatus,
+                additionalNotes: newRoom.additionalNotes,
+                reservationFrom: newRoom.reservationFrom,
+                reservationTo: newRoom.reservationTo,
+                currentRes: newRoom.currentRes 
+            });
+            console.log("Room updated in hotel with ID:", hotelId);
+        } else {
+            // Room doesn't exist, add a new document
+            await setDoc(roomDocRef, {
+                roomNumber: newRoom.roomNumber,
+                hotelId: newRoom.hotelId,
+                floor: newRoom.floor,
+                beds: newRoom.beds,
+                roomType: newRoom.roomType,
+                occupationStatus: newRoom.occupationStatus,
+                cleaningStatus: newRoom.cleaningStatus,
+                additionalNotes: newRoom.additionalNotes,
+                reservationFrom: newRoom.reservationFrom,
+                reservationTo: newRoom.reservationTo,
+                currentRes: newRoom.currentRes 
+            });
+            console.log("Room added to hotel with ID:", hotelId);
+        }
     } catch (error) {
-        console.error("Error adding room:", error);
+        console.error("Error adding/updating room:", error);
     }
 }
 
